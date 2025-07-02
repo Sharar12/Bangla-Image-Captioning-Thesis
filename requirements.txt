@@ -1,0 +1,16 @@
+torch>=2.2.0
+torchvision>=0.17.0
+transformers>=4.40.0
+accelerate>=0.28.0
+timm>=0.9.16
+nltk>=3.8.1
+rouge-score>=0.1.2
+evaluate>=0.4.1
+albumentations>=1.4.0
+pillow>=10.2.0
+pandas>=2.2.0
+numpy>=1.26.0
+tqdm>=4.66.0
+scikit-learn>=1.4.0
+pyyaml>=6.0.1
+gradio>=4.20.0
