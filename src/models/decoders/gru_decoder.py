@@ -17,7 +17,6 @@ class AttentionDecoderGRU(BaseDecoder):
         self.dropout = nn.Dropout(dropout)
 
     def init_hidden_state(self, encoder_out: torch.Tensor) -> torch.Tensor:
-        # Mean pool spatial features
         mean_enc = encoder_out.mean(dim=1)
         return torch.tanh(self.init_hidden(mean_enc))
 
@@ -26,12 +25,21 @@ class AttentionDecoderGRU(BaseDecoder):
         seq_len = captions.size(1)
         hidden = self.init_hidden_state(features)
 
+        # Pre-project visual features for faster attention computation across sequence
+        proj_features = self.attention.W_encoder(features)
+
         outputs = torch.zeros(batch_size, seq_len, self.vocab_size, device=features.device)
         input_token = captions[:, 0]
 
         for t in range(seq_len):
             embedded = self.dropout(self.embedding(input_token))
-            context, _ = self.attention(features, hidden)
+            
+            # Efficient attention using cached projection
+            proj_hidden = self.attention.W_decoder(hidden).unsqueeze(1)
+            scores = self.attention.V_attention(torch.tanh(proj_features + proj_hidden)).squeeze(-1)
+            alpha = torch.softmax(scores, dim=-1)
+            context = (features * alpha.unsqueeze(-1)).sum(dim=1)
+
             gru_input = torch.cat([embedded, context], dim=1)
             hidden = self.gru(gru_input, hidden)
             logits = self.fc_out(hidden)
