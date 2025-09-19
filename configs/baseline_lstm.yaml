@@ -1,0 +1,29 @@
+experiment_name: "baseline_resnet50_lstm"
+seed: 42
+
+data:
+  dataset_name: "BanglaLekha-ImageCaption"
+  img_dir: "data/raw/images"
+  captions_file: "data/raw/captions.json"
+  max_seq_len: 30
+  batch_size: 64
+  num_workers: 4
+
+model:
+  encoder: "resnet50"
+  encoder_dim: 2048
+  freeze_encoder: true
+  decoder: "lstm"
+  embed_dim: 300
+  hidden_dim: 512
+  attention_dim: 256
+  dropout: 0.3
+
+training:
+  epochs: 30
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  label_smoothing: 0.1
+  teacher_forcing_initial: 1.0
+  teacher_forcing_decay: 0.05
+  grad_clip: 5.0
