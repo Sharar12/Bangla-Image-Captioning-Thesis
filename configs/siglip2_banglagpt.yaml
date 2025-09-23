@@ -1,0 +1,28 @@
+experiment_name: "hybrid_siglip2_banglagpt"
+seed: 42
+
+data:
+  dataset_name: "Chittron_Plus_BanglaLekha"
+  img_dir: "data/raw/images"
+  captions_file: "data/processed/merged_captions.json"
+  max_seq_len: 40
+  batch_size: 32
+  num_workers: 4
+
+model:
+  encoder: "siglip2_base"
+  encoder_dim: 768
+  freeze_encoder: true
+  decoder: "banglagpt_adapter"
+  adapter_dim: 768
+  num_visual_tokens: 16
+  dropout: 0.1
+
+training:
+  epochs: 25
+  learning_rate: 0.00005
+  weight_decay: 0.01
+  warmup_steps: 500
+  grad_accum_steps: 2
+  grad_clip: 1.0
+  amp_fp16: true
