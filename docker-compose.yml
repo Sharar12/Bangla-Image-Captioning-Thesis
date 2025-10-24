@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  bangla-captioning:
+    build: .
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./checkpoints:/workspace/checkpoints
+      - ./data:/workspace/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
