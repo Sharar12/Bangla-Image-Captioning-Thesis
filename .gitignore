@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Model checkpoints & data
+*.pt
+*.pth
+*.bin
+*.onnx
+data/raw/
+checkpoints/
+runs/
+*.log
+
+# Environments
+venv/
+env/
+.env
+
+# IDEs
+.vscode/
+.idea/
+*.swp
