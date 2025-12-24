@@ -9,7 +9,6 @@ class LabelSmoothingLoss(nn.Module):
         self.pad_idx = pad_idx
 
     def forward(self, logits: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
-        # logits: (B, seq_len, vocab_size) or (N, vocab_size)
         if logits.dim() == 3:
             logits = logits.view(-1, logits.size(-1))
             targets = targets.view(-1)
