@@ -1,0 +1,10 @@
+experiment_name: "finetune_dec2025_siglip2"
+model:
+  encoder: "siglip2_base"
+  decoder: "attention_gru_ema"
+  hidden_dim: 512
+training:
+  epochs: 15
+  learning_rate: 0.00008
+  ema_decay: 0.999
+  amp_bf16: true
