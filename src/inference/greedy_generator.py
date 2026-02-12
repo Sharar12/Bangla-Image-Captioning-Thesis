@@ -1,6 +1,7 @@
 import torch
 
 def generate_greedy(model, image_tensor: torch.Tensor, vocab, max_len: int = 30, sos_idx: int = 1, eos_idx: int = 2):
+    """Optimized greedy decoding with pre-computed visual context caching."""
     model.eval()
     with torch.no_grad():
         features = model.encoder(image_tensor)
