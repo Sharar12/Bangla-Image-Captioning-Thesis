@@ -1,0 +1,8 @@
+experiment_name: "swa_focal_feb2026"
+training:
+  loss: "focal_cross_entropy"
+  focal_gamma: 2.0
+  use_swa: true
+  swa_start_epoch: 15
+  swa_lr: 0.00003
+  spatial_dropout: 0.15
