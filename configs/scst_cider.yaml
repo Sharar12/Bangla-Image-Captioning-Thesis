@@ -1,0 +1,7 @@
+experiment_name: "scst_cider_finetuning"
+training:
+  algorithm: "SCST"
+  reward_metric: "CIDEr"
+  learning_rate: 0.00001
+  batch_size: 16
+  baseline: "greedy"
