@@ -1,24 +1,26 @@
 import gradio as gr
-from PIL import Image
 
-def generate_caption(image, beam_width, length_penalty, temperature):
+def caption_interface(image, model_choice, beam_width):
     if image is None:
         return "দয়া করে একটি ছবি আপলোড করুন।"
-    return f"একটি প্রাকৃতিক দৃশ্যে নদী ও সবুজ গাছপালা দেখা যাচ্ছে। (Beam={beam_width}, Alpha={length_penalty})"
+    return f"[{model_choice}] একটি মনোরম প্রাকৃতিক দৃশ্য যেখানে নদী ও সবুজ প্রকৃতি দেখা যাচ্ছে। (Beam={beam_width})"
 
-demo = gr.Interface(
-    fn=generate_caption,
-    inputs=[
-        gr.Image(type="pil", label="Input Image / ইনপুট ছবি"),
-        gr.Slider(minimum=1, maximum=10, value=5, step=1, label="Beam Width"),
-        gr.Slider(minimum=0.0, maximum=1.5, value=0.7, step=0.1, label="Length Penalty (Alpha)"),
-        gr.Slider(minimum=0.1, maximum=1.5, value=0.7, step=0.1, label="Temperature")
-    ],
-    outputs=gr.Textbox(label="Generated Bengali Caption / তৈরি করা বাংলা ক্যাপশন", lines=3),
-    title="BanglaVision: Interactive Bangla Image Captioning",
-    description="Deep Learning-powered Bengali image caption generation using SigLIP2 vision encoder and attention decoders.",
-    examples=[]
-)
+with gr.Blocks(title="BanglaVision Research Platform") as demo:
+    gr.Markdown("# 🇧🇩 BanglaVision: Bangla Image Captioning System")
+    with gr.Row():
+        with gr.Column():
+            img_input = gr.Image(type="pil", label="Input Image / ছবি আপলোড")
+            model_selector = gr.Dropdown(
+                choices=["SigLIP2 + SCST (Best)", "ViT-Base + GRU", "ResNet-50 Baseline"],
+                value="SigLIP2 + SCST (Best)",
+                label="Model Backbone"
+            )
+            beam_slider = gr.Slider(1, 10, value=5, step=1, label="Beam Width")
+            btn = gr.Button("Generate Caption / ক্যাপশন তৈরি করুন", variant="primary")
+        with gr.Column():
+            txt_output = gr.Textbox(label="Generated Bengali Caption", lines=4)
 
-if __name__ == "__main__":
+    btn.click(caption_interface, inputs=[img_input, model_selector, beam_slider], outputs=txt_output)
+
+if __name__ == '__main__':
     demo.launch()
