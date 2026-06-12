@@ -1,11 +1,13 @@
-FROM pytorch/pytorch:2.2.0-cuda12.1-cudnn8-runtime
-
-WORKDIR /workspace
-
+# Multi-stage lightweight production container
+FROM python:3.10-slim as builder
+WORKDIR /app
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --user -r requirements.txt
 
+FROM python:3.10-slim
+WORKDIR /app
+COPY --from=builder /root/.local /root/.local
 COPY . .
-
-EXPOSE 7860
+ENV PATH=/root/.local/bin:$PATH
+EXPOSE 7860 8000
 CMD ["python", "app.py"]
