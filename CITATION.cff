@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this research software, please cite our thesis work as below."
+authors:
+  - family-names: "Hossain"
+    given-names: "Sharar"
+title: "BanglaVision: Deep Learning Framework for Bangla Image Captioning"
+version: 2.0.0
+date-released: 2026-06-29
+url: "https://github.com/Sharar12/Bangla-Image-Captioning-Thesis"
