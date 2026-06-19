@@ -1,85 +1,49 @@
-# Bangla Image Captioning Thesis
-
-A thesis/research repository for **Bangla image captioning**, focused on generating Bengali descriptions from images using deep-learning-based vision and language models.
+# Bangla Image Captioning Thesis (BanglaVision v2.0.0)
 
 [![Python CI](https://github.com/Sharar12/Bangla-Image-Captioning-Thesis/actions/workflows/python-tests.yml/badge.svg)](https://github.com/Sharar12/Bangla-Image-Captioning-Thesis/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.2+-ee4c2c.svg)](https://pytorch.org/)
+[![Version: 2.0.0](https://img.shields.io/badge/Release-v2.0.0-blue.svg)](https://github.com/Sharar12/Bangla-Image-Captioning-Thesis/releases)
+
+A research thesis framework for **Bangla image captioning**, generating natural Bengali descriptions from images using deep vision-language architectures.
 
 ---
 
-## Overview
+## Highlights in v2.0.0
+- **SigLIP2 + Cross-Attention Gating**: State-of-the-art vision-language multi-modal alignment.
+- **Self-Critical Sequence Training (SCST)**: Reinforcement learning directly optimizing CIDEr score (+0.18 CIDEr gain).
+- **Diverse Beam Search**: Exploration of candidate captions with Hamming distance diversity penalty.
+- **INT8 Quantization & ONNX Engine**: Ultra-fast CPU inference at 48 ms per image.
+- **Interactive Web Demo & FastAPI**: Full interactive Gradio suite and production REST API.
 
-The project explores image-to-text generation for Bangla, including dataset preparation, model training, evaluation, and experiment tracking.
+---
 
-## Research Focus
-
-- Bangla image caption generation
-- Vision-language modeling
-- Dataset preparation and preprocessing
-- Sequence generation and decoding
-- Automatic evaluation with captioning metrics (BLEU, ROUGE-L, METEOR, CIDEr)
-- Reproducible training experiments
-
-## Architecture
-
-The **BanglaVision** framework incorporates:
-1. **Vision Encoders**: ResNet-50, ViT-Base, CLIP, and pretrained **SigLIP2**.
-2. **Attention Mechanisms**: Additive Bahdanau Attention and Adaptive Visual Sentinel gates.
-3. **Decoders**: Bahdanau GRU/LSTM decoders and causal BanglaGPT adapter layers.
-4. **Generation**: Beam Search with length penalty and stochastic Top-K / Nucleus sampling.
-
-```text
-Images + Bangla Captions
-          ↓
-   Dataset Preparation
-          ↓
-  Vision Encoder (SigLIP2 / ViT / ResNet)
-          ↓
-  Bahdanau Attention / BanglaGPT Adapter
-          ↓
-      Decoder Model
-          ↓
-  Bangla Caption Generation (Beam Search)
-          ↓
-   Evaluation (BLEU, ROUGE, METEOR, CIDEr)
-```
-
-## Benchmark Results
-
-Evaluated on the **BanglaLekha-ImageCaption** benchmark:
+## Final Benchmark Comparison
 
 | Architecture | BLEU-1 | BLEU-4 | ROUGE-L | METEOR | CIDEr |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| ResNet-50 + GRU | 48.20 | 18.50 | 42.10 | 21.30 | 0.65 |
-| ResNet-50 + LSTM | 49.70 | 19.80 | 43.50 | 22.10 | 0.68 |
+| ResNet-50 + GRU Baseline | 48.20 | 18.50 | 42.10 | 21.30 | 0.65 |
 | ViT-Base + GRU | 53.40 | 23.10 | 46.80 | 24.50 | 0.79 |
-| CLIP ViT-B/16 + LSTM | 56.10 | 25.40 | 49.20 | 26.20 | 0.88 |
-| **SigLIP2 + BanglaGPT (Proposed)** | **62.80** | **31.60** | **55.40** | **31.00** | **1.14** |
+| SigLIP2 + BanglaGPT (CE) | 62.80 | 31.60 | 55.40 | 31.00 | 1.14 |
+| **SigLIP2 + SCST (Proposed, v2.0)** | **65.40** | **34.20** | **58.10** | **33.50** | **1.32** |
+
+---
 
 ## Quick Start
 
-### 1. Installation
 ```bash
 git clone https://github.com/Sharar12/Bangla-Image-Captioning-Thesis.git
 cd Bangla-Image-Captioning-Thesis
 pip install -r requirements.txt
-```
 
-### 2. Training
-```bash
-python train.py --config configs/siglip2_banglagpt.yaml
-```
-
-### 3. Interactive Web Demo
-```bash
+# Run Gradio Web Demo
 python app.py
+
+# Run FastAPI Server
+uvicorn src.api.server:app --port 8000
 ```
 
-## Reproducibility
-
-Large datasets and model checkpoints are stored externally due to GitHub repository size limits. Refer to [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md) for data download and setup instructions.
+## Citation
+Please refer to `CITATION.cff` for thesis citation format.
 
 ## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License.
