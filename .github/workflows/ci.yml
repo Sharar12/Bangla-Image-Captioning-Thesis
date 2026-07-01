@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install linting tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pycodestyle
+      - name: Lint with flake8
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=.git,__pycache__,.venv,.ruff_cache
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=.git,__pycache__,.venv,.ruff_cache
+
+  syntax-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check Python syntax
+        run: |
+          find . -name "*.py" -not -path "./.git/*" -not -path "./.venv/*" -exec python -m py_compile {} \;
+        shell: bash
+
+  imports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install core dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+          pip install transformers pillow pandas tqdm matplotlib nltk scikit-learn flask jupyter
+      - name: Test core import
+        run: |
+          python -c "
+import sys, warnings
+warnings.filterwarnings('ignore')
+print('Python:', sys.version)
+import torch; print('PyTorch:', torch.__version__)
+import transformers; print('Transformers:', transformers.__version__)
+import pandas; print('Pandas:', pandas.__version__)
+from PIL import Image; print('Pillow: OK')
+from tqdm import tqdm; print('tqdm: OK')
+import nltk; print('NLTK:', nltk.__version__)
+print('All core imports successful!')
+          "
