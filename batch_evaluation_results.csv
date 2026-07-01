@@ -1,0 +1,7 @@
+Model,File,BLEU-1,BLEU-2,BLEU-3,BLEU-4,METEOR
+
+microsoft_udop-large,microsoft_udop-large_epoch_10_lr_0.0001.pth,0.0780,0.0342,0.0159,0.0036,0.0925
+nvidia_C-RADIOv2-B,nvidia_C-RADIOv2-B_epoch_10_lr_0.0001.pth,0.2352,0.1206,0.0653,0.0226,0.1552
+google_siglip2-base-patch16-224,google_siglip2-base-patch16-224_epoch_10_lr_0.0001.pth,0.4800,0.3200,0.2013,0.1206,0.2914
+facebook_dinov3-vits16-pretrain-lvd1689m,facebook_dinov3-vits16-pretrain-lvd1689m_epoch_10_lr_0.0001.pth,0.2789,0.1605,0.0893,0.0508,0.2100
+openai_clip-vit-base-patch32,openai_clip-vit-base-patch32_epoch_10_lr_0.0001.pth,0.3744,0.2285,0.1318,0.0770,0.2159

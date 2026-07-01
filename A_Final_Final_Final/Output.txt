@@ -1,0 +1,183 @@
+C:\Python314\python.exe "D:\Python Projects\A_Final_Final_Final\EXP_siglip2_Att_GRU_Ex\code\trainsCCC.py" 
+W0621 19:20:11.791000 23756 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:20:11.872000 23756 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+Loading data...
+
+==================================================
+Train        39740      90.00%
+Val          2207       5.00%
+Test         2207       5.00%
+Total        44156      100.00%
+==================================================
+Images: 44156
+Caption lengths — mean: 11.5, p90: 17, p95: 20, p99: 26, max: 67
+Setting MAX_SEQ_LEN = 26
+Building word-level vocabulary from training captions...
+Vocabulary size: 34365
+Vocabulary saved to D:\Python Projects\A_Final_Final_Final\EXP_siglip2_Att_GRU_Ex\output\vocab.json
+Creating datasets...
+Loading weights: 100%|██████████| 408/408 [00:00<00:00, 2765.69it/s, Materializing param=vision_model.post_layernorm.weight]
+Loading weights: 100%|██████████| 148/148 [00:00<00:00, 3314.63it/s, Materializing param=wte.weight]
+BanglaGPT: Unfreezing last 4/12 layers
+Epoch 1/20:   0%|          | 0/3068 [00:00<?, ?it/s]
+==================================================
+Architecture: SigLIP2 → Linear(768,512) → Sequential Pipeline
+  ├─ GRU (4-layer + attention) → processes text+image
+  ├─ LSTM (4-layer + attention) → processes GRU output
+  └─ BanglaGPT → generates caption from LSTM features
+Vision: Last 4 layers | BanglaGPT: Last 4 layers
+Trainable: 231,675,453 | Vocab: 34,365 | MaxLen: 26
+Device: cuda | Batch: 64
+==================================================
+
+W0621 19:20:28.554000 20568 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:20:28.615000 20568 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:20:37.904000 27016 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:20:37.972000 27016 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:20:47.328000 32988 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:20:47.392000 32988 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:20:56.671000 17688 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:20:56.732000 17688 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:21:05.989000 33408 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:21:06.050000 33408 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:21:15.401000 28980 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:21:15.462000 28980 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+Epoch 1/20: 100%|██████████| 3068/3068 [09:00<00:00,  5.67it/s, loss=5.2072]
+W0621 19:29:29.608000 27888 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:29:29.669000 27888 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:29:38.870000 27920 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:29:38.932000 27920 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:29:48.370000 14288 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:29:48.435000 14288 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:29:57.681000 28600 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:29:57.746000 28600 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:30:06.923000 24040 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:30:06.984000 24040 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:30:16.171000 20292 site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W0621 19:30:16.230000 20292 site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি ছোট মেয়ে একটি গাছের নিচে দৌড়াচ্ছে
+Epoch 1/20 | 628.7s | Train: 5.2072 | Val: 3.9238 | LR: 1.50e-04
+
+  New best model saved (val_loss: 3.9238)
+Epoch 2/20: 100%|██████████| 3068/3068 [07:26<00:00,  6.88it/s, loss=3.7633]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা কুকুর একটি গাছের নিচে হাঁটছে
+Epoch 2/20 | 456.6s | Train: 3.7633 | Val: 3.5854 | LR: 3.00e-04
+
+  New best model saved (val_loss: 3.5854)
+Epoch 3/20: 100%|██████████| 3068/3068 [07:27<00:00,  6.85it/s, loss=3.4001]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা পোশাক পরা একটি শিশু একটি পাকা পথে হাঁটছে
+Epoch 3/20 | 458.1s | Train: 3.4001 | Val: 3.4352 | LR: 2.98e-04
+
+  New best model saved (val_loss: 3.4352)
+Epoch 4/20: 100%|██████████| 3068/3068 [07:27<00:00,  6.86it/s, loss=3.1700]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: সাদা পোশাক পরা একজন লোক একটি পাকা পথ দিয়ে হেঁটে যাচ্ছে
+Epoch 4/20 | 457.7s | Train: 3.1700 | Val: 3.3769 | LR: 2.91e-04
+
+  New best model saved (val_loss: 3.3769)
+Epoch 5/20: 100%|██████████| 3068/3068 [07:33<00:00,  6.76it/s, loss=3.0151]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা এবং সাদা কুকুর একটি গাছের সারিবদ্ধ পথে হাঁটছে
+Epoch 5/20 | 465.9s | Train: 3.0151 | Val: 3.3305 | LR: 2.80e-04
+
+  New best model saved (val_loss: 3.3305)
+Epoch 6/20: 100%|██████████| 3068/3068 [07:32<00:00,  6.78it/s, loss=2.8952]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা পোশাক পরা একটি ছোট মেয়ে একটি পথে হাঁটছে
+Epoch 6/20 | 465.2s | Train: 2.8952 | Val: 3.3085 | LR: 2.65e-04
+
+  New best model saved (val_loss: 3.3085)
+Epoch 7/20: 100%|██████████| 3068/3068 [07:33<00:00,  6.76it/s, loss=2.7933]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা পোশাক পরা একটি মেয়ে একটি পথ দিয়ে হাঁটছে
+Epoch 7/20 | 463.8s | Train: 2.7933 | Val: 3.2841 | LR: 2.46e-04
+
+  New best model saved (val_loss: 3.2841)
+Epoch 8/20: 100%|██████████| 3068/3068 [07:26<00:00,  6.86it/s, loss=2.6990]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা শার্ট পরা একটি ছোট শিশু একটি পথে হাঁটছে
+Epoch 8/20 | 457.1s | Train: 2.6990 | Val: 3.2788 | LR: 2.25e-04
+
+  New best model saved (val_loss: 3.2788)
+Epoch 9/20: 100%|██████████| 3068/3068 [10:24<00:00,  4.91it/s, loss=2.6104]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা শার্ট পরা একটি ছোট মেয়ে একটি পাকা পথে হাঁটছে
+Epoch 9/20 | 641.5s | Train: 2.6104 | Val: 3.2614 | LR: 2.01e-04
+
+  New best model saved (val_loss: 3.2614)
+Epoch 10/20: 100%|██████████| 3068/3068 [14:52<00:00,  3.44it/s, loss=2.5254]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি ছোট মেয়ে একটি ছোট গাছের সারিবদ্ধ রাস্তায় হাঁটছে
+Epoch 10/20 | 908.8s | Train: 2.5254 | Val: 3.2621 | LR: 1.76e-04
+
+Epoch 11/20: 100%|██████████| 3068/3068 [35:22<00:00,  1.45it/s, loss=2.4394]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি ছোট মেয়ে একটি পথ দিয়ে হাঁটছে
+Epoch 11/20 | 2148.9s | Train: 2.4394 | Val: 3.2634 | LR: 1.50e-04
+
+Epoch 12/20: 100%|██████████| 3068/3068 [34:47<00:00,  1.47it/s, loss=2.3539]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা শার্ট পরা একটি মেয়ে একটি পাথরের পথে হাঁটছে
+Epoch 12/20 | 2111.8s | Train: 2.3539 | Val: 3.2638 | LR: 1.24e-04
+
+Epoch 13/20: 100%|██████████| 3068/3068 [31:18<00:00,  1.63it/s, loss=2.2701]
+  REF : হাল্কা পোশাক পরা একটি শিশু গাছের পাতায় ঢাকা রাস্তায় হাঁটছে
+  PRED: একটি সাদা শার্ট পরা একটি মেয়ে একটি গাছের সারিবদ্ধ পথে হাঁটছে
+Epoch 13/20 | 1888.5s | Train: 2.2701 | Val: 3.2740 | LR: 9.87e-05
+
+Epoch 14/20:   3%|▎         | 82/3068 [00:13<07:58,  6.24it/s, loss=2.1126]
+Traceback (most recent call last):
+  File "D:\Python Projects\A_Final_Final_Final\EXP_siglip2_Att_GRU_Ex\code\trainsCCC.py", line 753, in <module>
+    train()
+    ~~~~~^^
+  File "D:\Python Projects\A_Final_Final_Final\EXP_siglip2_Att_GRU_Ex\code\trainsCCC.py", line 660, in train
+    outputs = model(pixel_values, caption_ids, labels=labels)
+  File "C:\Python314\Lib\site-packages\torch\_dynamo\eval_frame.py", line 511, in __call__
+    return super().__call__(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Python314\Lib\site-packages\torch\_dynamo\eval_frame.py", line 1166, in compile_wrapper
+    result = fn(*args, **kwargs)
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\Python Projects\A_Final_Final_Final\EXP_siglip2_Att_GRU_Ex\code\trainsCCC.py", line 317, in forward
+    logits = self.decoder(visual_tokens, input_ids)
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\Python Projects\A_Final_Final_Final\EXP_siglip2_Att_GRU_Ex\code\trainsCCC.py", line 261, in forward
+    gru_features = self.gru(encoder_outputs, input_ids)
+  File "D:\Python Projects\A_Final_Final_Final\EXP_siglip2_Att_GRU_Ex\code\trainsCCC.py", line 262, in torch_dynamo_resume_in_forward_at_261
+    lstm_features = self.lstm(encoder_outputs, gru_features)
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\Python Projects\A_Final_Final_Final\EXP_siglip2_Att_GRU_Ex\code\trainsCCC.py", line 209, in forward
+    rnn_outputs, hidden = self.rnn(gru_features, hidden)
+                          ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Python314\Lib\site-packages\torch\nn\modules\rnn.py", line 1164, in forward
+    result = _VF.lstm(
+        input,
+    ...<7 lines>...
+        self.batch_first,
+    )
+KeyboardInterrupt

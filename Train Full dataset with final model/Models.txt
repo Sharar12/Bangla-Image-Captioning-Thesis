@@ -1,0 +1,78 @@
+google/vit-base-patch16-224-in21k (86.4M) - done
+nvidia/C-RADIOv2-B (98.2M) - done
+openai/clip-vit-base-patch16 (0.4B)
+google/siglip2-base-patch32-256 (0.4B) - Done
+facebook/pixio-vitb16 (85.9M) - done
+microsoft/Florence-2-base (0.23B)
+
+for Competition
+
+# ==========================================
+# FAST COMPETITION SETTINGS (Fair & Optimized)
+# ==========================================
+BATCH_SIZE = 64               # Fill 12GB VRAM (Fastest burst)
+ACCUMULATION_STEPS = 1        # Sharp updates
+EPOCHS = 10                   # Trends lock in after 10 epochs
+MAX_LR = 1.5e-4               # Fast convergence
+
+# --- Competition IQ (Enough to compare) ---
+NHEAD = 12                    # 64 units/head (Standard)
+NUM_LAYERS = 6                # Judge the encoder, save 60% time
+HIDDEN_DIM = 2048             # Reduce math overhead
+DROPOUT = 0.1
+LABEL_SMOOTHING = 0.1
+MIN_FREQ = 5                  # Small vocab = Faster final layer
+
+
+
+For Highest IQ
+
+BATCH_SIZE = 32
+ACCUMULATION_STEPS = 1
+EPOCHS = 20
+MAX_LR = 1e-4
+USE_AMP = True
+NUM_WORKERS = 4
+MAX_SEQ_LEN = 32
+
+FEATURE_DIM = 768
+EMBED_DIM = 768
+NHEAD = 16
+NUM_LAYERS = 16
+HIDDEN_DIM = 4096
+DROPOUT = 0.1
+LABEL_SMOOTHING = 0.1
+MIN_FREQ = 4
+
+
+
+
+
+for 100 Epoch
+
+# ==========================================
+# GRAND FINALE SETTINGS (Highest IQ)
+# ==========================================
+MODEL_NAME = "google/siglip2-base-patch32-256"
+
+# --- VRAM Protection & Speed ---
+BATCH_SIZE = 16               # Lowered to 16! (16 Layers + 4096 Hidden will crash at 32)
+ACCUMULATION_STEPS = 4        # Effective Batch 64 (Perfect for high IQ noise)
+EPOCHS = 100                  
+MAX_LR = 1e-4                 
+USE_AMP = True
+NUM_WORKERS = 8               # Keep CPU feeding the GPU fast
+MAX_SEQ_LEN = 32
+
+# --- Extreme IQ Architecture ---
+FEATURE_DIM = 768
+EMBED_DIM = 768
+NHEAD = 16
+NUM_LAYERS = 16               # The "Super Brain"
+HIDDEN_DIM = 4096             
+
+# --- 100-Epoch Overfitting Shields ---
+DROPOUT = 0.2                 # Increased from 0.1! (Mandatory for 100 epochs)
+LABEL_SMOOTHING = 0.1
+WEIGHT_DECAY = 0.05           # Essential to keep weights healthy over 100 epochs
+MIN_FREQ = 4
